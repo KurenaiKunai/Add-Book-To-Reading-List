@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+	<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+	<meta content="utf-8" http-equiv="encoding">
+	
+	 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+	 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+	 <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+	 <script src="script.js"></script>
+	 
+  </head>
+
+  <body ng-app="mymodal">
+
+<div ng-controller="MainCtrl" class="container">
+  <h1>Book Details</h1>
+  
+  <button ng-click="toggleModal()" class="btn btn-default">Add Book</button>
+  <br><br>
+		
+		<!--section class="archiveControl">
+			<p><input type="button" class="btn btn-default" value="Remove Book" ng-click="archive()"></p>
+		</section -->
+		
+	<p> <input type="search" placeholder="Search for your book" ng-model="searchText"></p>
+
+<table id="searchTextResults">
+  <tr><th>Name of the Book</th></tr>
+  <tr ng-repeat="todo in todos| filter: searchText">
+    <td><input type="checkbox" ng-model="todo.done"></td>
+    <td><span class="done-{{ todo.done }}">{{ todo.text }}</span></td>
+    <td style="padding:0 15px 0 15px;"></td>
+    <td><button ng-click="remove($index)" class="btn btn-default"><span class=" glyphicon glyphicon-remove"></span></button></td>
+  </tr>
+</table>
+
+	 			
+    <modal title="Book Details" visible="showModal">			
+    <form role="form" ng-submit="addTodo(todoText)" id="modalForm">
+      <div class="form-group">
+        <label for="name">Book Name: </label>
+        <input type="text" ng-model="todoText" class="form-control" id="bookName" placeholder="Enter book name" required/>
+      </div>
+      <button type="submit" class="btn btn-default">Submit</button>
+      <button type="button" class="btn btn-default" data-dismiss="modal" aria-hidden="true">Close</button>
+    </form>
+  </modal>
+</div>
+	<br>
+  </body>
+
+</html>
